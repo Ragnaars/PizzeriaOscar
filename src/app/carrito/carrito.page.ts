@@ -45,7 +45,7 @@ export class CarritoPage implements OnInit {
 
   remover() {
     this.servicioCarrito.removerDelCarrito();
-    this.router.navigate(['/'])
+    this.router.navigate(['/listar'])
   }
 
   quitar(product: any) {

@@ -50,7 +50,7 @@
               <ion-row>
                 <ion-col size = "2"></ion-col>
                 <ion-col id = "col"size = "8">
-                  <ion-button color = "success" *ngIf = "data.stock != 0"  [routerLink] = "['/']" (click) = "addCarrito(data.id, cantidad)">
+                  <ion-button color = "success" *ngIf = "data.stock != 0"  [routerLink] = "['/listar']" (click) = "addCarrito(data.id, cantidad)">
                   Agregar
                 </ion-button>
                 </ion-col>
