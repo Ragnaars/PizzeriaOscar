@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { ProductoConId, Producto, ProductoParcial } from "../interfaces/producto";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
-import { delay } from "rxjs/operators";
+import { delay, map } from "rxjs/operators";
 
 
 @Injectable({
@@ -24,13 +24,24 @@ export class ApiProductoService {
     private http: HttpClient,
   ) { }
 
-  public obtenerPrimerosProductos() {
+  public obtenerPrimerosProductos122() {
     this.http.get<ProductoConId[]>(`${this.URL_PRODUCTOS}?_page=1`).pipe(
       delay(2000)
     )
       .subscribe(resp => {
         this.Page = this.Page + 1;
         this.comLista.next(resp);
+        console.log(resp);
+      })
+  }
+  public obtenerPrimerosProductos() {
+    this.http.get('../../assets/db.json').pipe(
+      delay(2000)
+    )
+      .subscribe(resp => {
+        this.Page = this.Page + 1;
+        console.log(Object(resp).producto)
+        this.comLista.next(Object(resp).producto);
       })
   }
 
