@@ -10,11 +10,19 @@ import { AlertController, ModalController } from '@ionic/angular';
 })
 export class CarritoPage implements OnInit {
 
+  nombreProducto!: string;
+  cantidadProducto!: number;
   productoSeleccionado = [];
   productos = [];
   carrito: any = [];
   total = 0;
   parametroId: any = {};
+  countrycode: string = "56";
+  whatsappnumber: string = "978840732";
+  url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar los siguientes productos: " + this.carrito;
+
+
+
 
 
   constructor(
@@ -57,15 +65,15 @@ export class CarritoPage implements OnInit {
   }
 
   async checkout() {
-    const alert = await this.alertController.create({
-      header: 'Gracias por su Orden',
-      message: 'Pronto estará reciviendo noticias de su pedido :D',
-      buttons: ['Gracias']
+    let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar los siguientes producto : ";
+    this.carrito.forEach((prod: any) => {
+      this.nombreProducto = prod.nombre;
+      this.cantidadProducto = prod.cantidad;
+      url += this.cantidadProducto + " x " + this.nombreProducto + "\n ";
+
     });
-    alert.present();
-    this.remover();
-    this.modalCtrl.dismiss();
-    this.router.navigate(['/']);
+    window.location.href = url;
+
   }
 
 }

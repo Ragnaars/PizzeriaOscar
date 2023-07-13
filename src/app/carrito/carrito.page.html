@@ -66,7 +66,10 @@
           <ion-row>
             <ion-col style = "justify-content: center;
             align-items: center;
-            left: 1cm;"><ion-button id = "b" class = "glow-on-hover" *ngIf = "getTotal() != 0" color = "success" (click) = "checkout()">CheckOut</ion-button></ion-col>
+            left: 1cm;">
+            <ion-button id = "b" class = "glow-on-hover" *ngIf = "getTotal() != 0" color = "success" (click) = "checkout()">
+              <ion-icon name = "logo-whatsapp"></ion-icon>
+            </ion-button></ion-col>
           </ion-row>
         </ion-grid>
           <ion-note>
