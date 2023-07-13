@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-segment value = "all">
+      <ion-segment-button value="all">
+          Disponibles
+      </ion-segment-button>
+      <ion-segment-button [routerLink] = "['/carrito1']" value="favorites">
+        Carrito
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-toolbar style = "border-color: aliceblue;">
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-note style = "font-size: smaller; text-align: center;display: block;">desliza para actualizar</ion-note>
+  <ion-list  *ngFor = "let detalle of apiProducto.listaProducto$|async">
+    <ion-item className="animate__animated animated__slideInUp animate__faster">
+      <ion-card id = "c" [routerLink] = "['/detalle-pagina', detalle.id]" >
+        <ion-card-header>
+          <h1 style = "text-align: center; color : black; font-size : 28px; font-weight : bold">{{detalle.nombre}}</h1>
+        </ion-card-header>
+        <ion-card-content>
+          <img id = "foto" [src]="detalle.imagen" alt="detalle">
+          <h1 style = "text-align: center; color : black; font-size : 22px; font-weight : bold">${{detalle.precio}} la noche</h1>
+          <br>
+            <h2 style = "text-align: center;">{{detalle.desc}}</h2>
+          <br>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="2"></ion-col>
+              <ion-col size="8">
+            <ion-button id = "b" [routerLink] = "['/detalle-pagina', detalle.id]" #cart>
+              reserva
+            </ion-button>
+              <!-- <a style = "text-align: center;">reservar</a> -->
+              </ion-col>
+              <ion-col size="2"></ion-col>
+            </ion-row>
+          </ion-grid>
+
+
+
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="arrow-up-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button  [routerLink] = "['/']"><ion-icon color = "primary" name="list"></ion-icon></ion-fab-button>
+      <ion-fab-button  [routerLink] = "['/perfil']"><ion-icon color ="primary" name="person"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab><ion-infinite-scroll (ionInfinite)="cargarMasElementos()">
+    <ion-infinite-scroll-content
+      loadingText="Cargando ..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
