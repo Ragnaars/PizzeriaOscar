@@ -1,0 +1,34 @@
+@keyframes spin {
+    from {
+    transform: rotate(0deg);
+    }
+    to {
+    transform: rotate(360deg);
+    }
+}
+.loading-container .pizza-spinner {
+    animation: spin 2s linear infinite; /* Ajusta la duración según tus necesidades */
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .loading img {
+    width: 200px; /* Ajusta el tamaño según tus necesidades */
+  }
+
+.center{
+    text-align: center;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+

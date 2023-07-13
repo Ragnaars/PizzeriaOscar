@@ -3,6 +3,7 @@ import { ApiProductoService } from "../services/api-producto.service";
 // import {CarritoService} from "../servivio/carrito.service";
 import { Producto } from "../interfaces/producto";
 import { IonInfiniteScroll } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar',
@@ -16,7 +17,8 @@ export class ListarPage implements OnInit {
 
   public data: any = []
   constructor(
-    public apiProducto: ApiProductoService
+    public apiProducto: ApiProductoService,
+    private router: Router
   ) { }
 
   ngOnInit() { //hace consultas asincronicas
@@ -54,4 +56,7 @@ export class ListarPage implements OnInit {
     }, 2000);
   };
 
+  goToCarrito() {
+    this.router.navigate(['/carrito']);
+  }
 }

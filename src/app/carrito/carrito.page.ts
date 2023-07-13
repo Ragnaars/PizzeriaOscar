@@ -76,4 +76,16 @@ export class CarritoPage implements OnInit {
 
   }
 
+  goToDisponibles() {
+    this.router.navigate(['/listar']);
+  }
+
+
+
+
+
+
 }
+
+
+

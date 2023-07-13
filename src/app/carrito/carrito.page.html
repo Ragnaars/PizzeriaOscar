@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color = "primary">
     <ion-segment value = "favorites">
-      <ion-segment-button value="all" [routerLink] = "['/']" >
+      <ion-segment-button value="all" (click) = "goToDisponibles()" >
           Disponibles
       </ion-segment-button>
       <ion-segment-button  value="favorites">

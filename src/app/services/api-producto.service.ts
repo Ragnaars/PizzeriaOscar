@@ -14,7 +14,7 @@ export class ApiProductoService {
 
   public stock: number = 0;
   private Page = 1;
-  private URL_PRODUCTOS = 'https://tortoiseshell-cooperative-taste.glitch.me/producto';
+  private URL_PRODUCTOS = 'https://adaptable-endurable-quit.glitch.me/producto';
   private comLista = new BehaviorSubject<Array<ProductoConId>>([]);
   //CREAR OBSERVADOR
   public listaProducto$ = this.comLista.asObservable();
@@ -24,7 +24,7 @@ export class ApiProductoService {
     private http: HttpClient,
   ) { }
 
-  public obtenerPrimerosProductos122() {
+  public obtenerPrimerosProductos() {
     this.http.get<ProductoConId[]>(`${this.URL_PRODUCTOS}?_page=1`).pipe(
       delay(2000)
     )
@@ -34,7 +34,8 @@ export class ApiProductoService {
         console.log(resp);
       })
   }
-  public obtenerPrimerosProductos() {
+
+  public obtenerPrimerosProductos12() {
     this.http.get('../../assets/db.json').pipe(
       delay(2000)
     )

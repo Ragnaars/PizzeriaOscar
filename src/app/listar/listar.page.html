@@ -4,7 +4,8 @@
       <ion-segment-button style="text-align: center; color: black;  font-weight: bold" value="custom">
         Disponibles
       </ion-segment-button>
-      <ion-segment-button style="text-align: center; color: black;  font-weight: bold" [routerLink]="['/carrito']" value="favorites">
+      <ion-segment-button style="text-align: center; color: black;  font-weight: bold"
+      (click) = "goToCarrito()" value="favorites">
         Carrito
       </ion-segment-button>
     </ion-segment>
@@ -36,7 +37,7 @@
                   <br> -->
                     <div class="centrado" style="margin-top: 5%;">
                         <ion-button color="warning" style="align-items: center;" id="b" [routerLink]="['/detalle-pagina', detalle.id]" #cart>
-                          reservar&nbsp;<ion-icon name="pizza-sharp"></ion-icon>
+                          Ordenar&nbsp;<ion-icon name="pizza-sharp"></ion-icon>
                         </ion-button>
                     </div>
                 </ion-card-content>
