@@ -19,7 +19,7 @@ export class CarritoPage implements OnInit {
   parametroId: any = {};
   countrycode: string = "56";
   whatsappnumber: string = "978840732";
-  url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar los siguientes productos: " + this.carrito;
+
 
 
 
@@ -65,11 +65,12 @@ export class CarritoPage implements OnInit {
   }
 
   async checkout() {
-    let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar los siguientes producto : ";
+    let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar los siguientes productos : ";
+    this.router.navigate(['/loading-pay']);
     this.carrito.forEach((prod: any) => {
       this.nombreProducto = prod.nombre;
       this.cantidadProducto = prod.cantidad;
-      url += this.cantidadProducto + " x " + this.nombreProducto + "\n ";
+      url += this.cantidadProducto + " x " + this.nombreProducto + "\n || ";
 
     });
     window.location.href = url;

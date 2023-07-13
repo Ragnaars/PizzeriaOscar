@@ -36,4 +36,6 @@ export class LoadingPage implements OnInit {
     }
   }
 
+
+
 }
