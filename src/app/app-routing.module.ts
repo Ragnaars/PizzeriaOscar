@@ -11,6 +11,16 @@ const routes: Routes = [
     path: 'listar',
     loadChildren: () => import('./listar/listar.module').then(m => m.ListarPageModule)
   },
+  {
+    path: 'detalle-pagina/:id',
+    loadChildren: () => import('./detalle-pagina/detalle-pagina.module').then(m => m.DetallePaginaPageModule)
+  },
+  {
+    path: 'carrito',
+    loadChildren: () => import('./carrito/carrito.module').then(m => m.CarritoPageModule)
+  },
+
+
 
 ];
 

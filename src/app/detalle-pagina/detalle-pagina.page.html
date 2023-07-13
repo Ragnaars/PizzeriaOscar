@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color = "primary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reservala!</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content className="animate__animated animated__slideInUp animate__faster">
+<ion-card >
+  <ion-card-header>
+    <ion-card-title style = "text-align:center">
+      Comprala ya!
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <h1 style = "text-align:center">{{data.nombre}}</h1>
+    <img [src]="data.imagen" alt="casa">
+    <ion-item>
+    {{data.descripcion}}
+    </ion-item>
+    <ion-item>
+      Precio : {{data.precio}}
+    </ion-item>
+  </ion-card-content>
+  <ion-card-content>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col size = "4">
+                  <ion-button *ngIf = "data.stock != 0 " (click) = "restReserva()">
+                    <ion-icon name="remove-circle-outline" ></ion-icon>
+                  </ion-button>
+                </ion-col>
+                <ion-col size = "4">
+                </ion-col>
+                <ion-col size = "4">
+                  <ion-button *ngIf = "data.stock != 0" (click) = "addReserva()">
+                    <ion-icon name="add-circle-outline" ></ion-icon>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size = "2"></ion-col>
+                <ion-col id = "col"size = "8">
+                  Cantidad :{{cantidad}}
+                </ion-col>
+                <ion-col size = "2"></ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size = "2"></ion-col>
+                <ion-col id = "col"size = "8">
+                  <ion-button color = "success" *ngIf = "data.stock != 0"  [routerLink] = "['/']" (click) = "addCarrito(data.id, cantidad)">
+                  Agregar
+                </ion-button>
+                </ion-col>
+                <ion-col size = "2"></ion-col>
+              </ion-row>
+            </ion-grid>
+            <h1 *ngIf = "data.stock != 0" style = "text-align:center">Total : {{total}}</h1>
+            <ion-grid>
+              <ion-row>
+                <ion-col size = 4>
+                </ion-col>
+                <ion-col id = "col"size = 4>
+                  <ion-button (click) = "shareApp()">
+                <ion-icon  name="share-social-outline"></ion-icon>
+              </ion-button>
+                </ion-col>
+                <ion-col size = 4>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+  </ion-card-content>
+</ion-card>
+</ion-content>
