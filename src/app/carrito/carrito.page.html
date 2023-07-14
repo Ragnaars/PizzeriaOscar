@@ -39,7 +39,8 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-    <p style="text-align: center;">Total: <span>{{getTotal() | currency: 'CLP':'symbol-narrow'}}</span></p>
+    <p  *ngIf="getTotal() == 0" style="text-align: center;"><span>Aún no eliges nada 😥</span></p>
+    <p  *ngIf="getTotal() != 0" style="text-align: center;">Total: <span>{{getTotal() | currency: 'CLP':'symbol-narrow'}}</span></p>
   </ion-list>
   <div class = "center">
     <ion-row>
@@ -66,8 +67,8 @@
             </ion-label>
           </ion-item>
         </ion-list>
-        <h3 style="text-align: center;">Total: <span>{{getTotal() | currency: 'CLP':'symbol-narrow'}}</span></h3>
-        <h2 style = "text-align: center; font-size:20">Escoge metodo de pago</h2>
+        <h3 style="text-align: center;"  *ngIf="getTotal() != 0">Total: <span>{{getTotal() | currency: 'CLP':'symbol-narrow'}}</span></h3>
+        <h2  *ngIf="getTotal() != 0" style = "text-align: center; font-size:20">Escoge metodo de pago</h2>
         <div class="radio-buttons-container" *ngIf="getTotal() != 0">
           <ion-radio-group value="metPago">
             <div class="radio-buttons-container" *ngIf="getTotal() != 0">

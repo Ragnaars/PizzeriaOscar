@@ -67,7 +67,7 @@ export class CarritoPage implements OnInit {
   }
 
   async checkout() {
-    let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar los siguientes productos : ";
+    let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar : ";
     this.router.navigate(['/loading-pay']);
     this.carrito.forEach((prod: any) => {
       this.nombreProducto = prod.nombre;
