@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiProductoService } from "../services/api-producto.service";
-// import {CarritoService} from "../servivio/carrito.service";
+import { CarritoService } from './../services/carrito.service';
 import { Producto } from "../interfaces/producto";
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./listar.page.scss'],
 })
 export class ListarPage implements OnInit {
-
+  cantidadCarrito: number = 0;
 
   @ViewChild(IonInfiniteScroll)
   public scroll: IonInfiniteScroll | undefined;
@@ -19,7 +19,8 @@ export class ListarPage implements OnInit {
   public data: any = []
   constructor(
     public apiProducto: ApiProductoService,
-    private router: Router
+    private router: Router,
+    private carritoService: CarritoService
   ) { }
 
   ngOnInit() { //hace consultas asincronicas
@@ -41,6 +42,7 @@ export class ListarPage implements OnInit {
   ionViewWillEnter() {
     this.apiProducto.obtenerPrimerosProductos();
     this.apiProducto.listaProducto$
+    this.cantidadCarrito = this.carritoService.getCantidadCarrito();
   }
 
   cargarMasElementos() {

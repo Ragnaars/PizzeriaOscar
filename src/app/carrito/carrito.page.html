@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="warning">
     <ion-segment value="favorites">
       <ion-segment-button value="all" (click)="goToDisponibles()">
@@ -6,6 +6,23 @@
       </ion-segment-button>
       <ion-segment-button value="favorites">
         <ion-icon name="cart-outline"></ion-icon>
+        <span *ngIf="cantidadArticulos > 0" class="badge">{{ cantidadArticulos }}</span>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-segment value="custom">
+      <ion-segment-button style="text-align: center; color: black; font-weight: bold" value="custom"  (click)="goToDisponibles()">
+        Disponibles
+      </ion-segment-button>
+      <ion-segment-button style="text-align: center; color: black; font-weight: bold"
+        value="favorites">
+        <div class="carrito-container">
+          <ion-icon name="cart-outline" class="carrito-icon"></ion-icon>
+          <span class="cantidad-carrito" *ngIf="cantidadArticulos > 0">{{ cantidadArticulos }}</span>
+        </div>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>

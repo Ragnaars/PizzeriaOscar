@@ -23,12 +23,7 @@ export class CarritoPage implements OnInit {
   metodoPago: string = '';
   nombre: string = '';
   direccion: string = '';
-
-
-
-
-
-
+  cantidadArticulos: number = 0; // Variable para almacenar la cantidad de artículos en el carrito
 
   constructor(
     private servicioCarrito: CarritoService,
@@ -36,27 +31,28 @@ export class CarritoPage implements OnInit {
     private rutaActiva: ActivatedRoute,
     public alertController: AlertController,
     private modalCtrl: ModalController
-
-  ) {
-  }
-
+  ) {}
 
   ngOnInit() {
     this.carrito = this.servicioCarrito.getCarrito();
+    this.cantidadArticulos = this.servicioCarrito.getCantidadCarrito(); // Obtener la cantidad de artículos del carrito
   }
+
   ionViewDidEnter() {
     this.carrito = this.servicioCarrito.getCarrito();
+    this.cantidadArticulos = this.servicioCarrito.getCantidadCarrito(); // Actualizar la cantidad de artículos
   }
 
   remover() {
     this.servicioCarrito.removerDelCarrito();
-    this.router.navigate(['/listar'])
+    this.router.navigate(['/listar']);
   }
 
   quitar(product: any) {
     for (let [index, p] of this.carrito.entries()) {
       if (p.id === product.id) {
-        this.carrito.splice(index, 1)
+        this.carrito.splice(index, 1);
+        this.cantidadArticulos = this.servicioCarrito.getCantidadCarrito(); // Actualizar la cantidad de artículos
       }
     }
   }
@@ -67,26 +63,34 @@ export class CarritoPage implements OnInit {
 
   romover() {
     this.carrito = [];
+    this.cantidadArticulos = 0; // Reiniciar la cantidad de artículos
   }
 
   async checkout() {
     if (this.metodoPago && this.metodoPago.length > 0 && this.nombre && this.nombre.length >= 6 && this.direccion && this.direccion.length >= 6) {
-      let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar : ";
+      let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=";
+
       this.router.navigate(['/loading-pay']);
+
+      let mensaje: string = "Me gustaría ordenar:\n";
+
       this.carrito.forEach((prod: any) => {
         this.nombreProducto = prod.nombre;
         this.cantidadProducto = prod.cantidad;
-        url += this.cantidadProducto + " x " + this.nombreProducto;
+        mensaje += this.cantidadProducto + " x " + this.nombreProducto;
         if (prod.ingredientes) {
           prod.ingredientes.forEach((ing: any) => {
-            url += " %2B " + ing.nombre;
+            mensaje += " + " + ing.nombre;
           });
         }
-        url += " || ";
+        mensaje += "\n";
       });
-      url += " Mi metodo de pago es : " + this.metodoPago;
-      url += " Mi nombre es : " + this.nombre + " y mi dirección es : " + this.direccion;
 
+      mensaje += "Mi método de pago es: " + this.metodoPago + "\n";
+      mensaje += "Mi nombre es: " + this.nombre + "\n";
+      mensaje += "Mi dirección es: " + this.direccion + "\n";
+
+      url += encodeURIComponent(mensaje);
       window.location.href = url;
     } else {
       if (!this.metodoPago || this.metodoPago.length === 0) {
@@ -104,13 +108,4 @@ export class CarritoPage implements OnInit {
   goToDisponibles() {
     this.router.navigate(['/listar']);
   }
-
-
-
-
-
-
 }
-
-
-

@@ -1,39 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 import { Producto, ProductoConId } from '../interfaces/producto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
-
   private carrito: ProductoConId[] = [];
 
-  private UrlApi = "http://localhost:3000/producto/"
+  constructor(public http: HttpClient) {}
 
   getCarrito() {
     return this.carrito;
   }
 
   agregaracarrito(producto: ProductoConId) {
-    this.carrito.push(producto);
+    const index = this.carrito.findIndex(item => item.id === producto.id);
+    if (index !== -1) {
+      this.carrito[index].cantidad += producto.cantidad;
+    } else {
+      this.carrito.push(producto);
+    }
   }
 
   removerDelCarrito() {
     this.carrito = [];
   }
 
-
-  constructor(
-    public http: HttpClient
-  ) { }
-
   eliminarDelCarrito(producto: ProductoConId) {
-    for (let [index, p] of this.carrito.entries()) {
-      if (p.id === producto.id) {
-        this.carrito.splice(index, 1)
+    const index = this.carrito.findIndex(item => item.id === producto.id);
+    if (index !== -1) {
+      if (this.carrito[index].cantidad > 1) {
+        this.carrito[index].cantidad--;
+      } else {
+        this.carrito.splice(index, 1);
       }
     }
   }
 
+  getCantidadCarrito(): number {
+    return this.carrito.reduce((total, item) => total + item.cantidad, 0);
+  }
 }

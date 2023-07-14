@@ -7,6 +7,7 @@ export interface Producto {
 
 
 export interface ProductoConId extends Producto {
+    cantidad: any;
     id: number;
 
 }
