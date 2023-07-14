@@ -61,7 +61,8 @@
             </ion-avatar>
             <ion-label>
               <h2>{{prod.nombre}}</h2>
-              <p>{{prod.precio | currency: 'CLP':'symbol-narrow'}} x {{prod.cantidad}}</p>
+              <p *ngIf = "prod.especial === true" >{{prod.precio | currency: 'CLP':'symbol-narrow'}} x {{prod.cantidad}} -- ESPECIAL</p>
+              <p *ngIf = "prod.especial === false">{{prod.precio | currency: 'CLP':'symbol-narrow'}} x {{prod.cantidad}}</p>
             </ion-label>
           </ion-item>
         </ion-list>
