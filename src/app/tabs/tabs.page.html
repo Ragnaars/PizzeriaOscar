@@ -1,0 +1,17 @@
+<ion-tabs >
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="listar">
+      <ion-icon name="pizza-outline"></ion-icon>
+      Pizzas
+    </ion-tab-button>
+    <ion-tab-button tab="listar2">
+      <ion-icon name="people"></ion-icon>
+      Churros
+    </ion-tab-button>
+    <ion-tab-button tab="carrito">
+      <ion-icon name="cart-outline"></ion-icon>
+      Carrito
+      <span class="cantidad-carrito" *ngIf="cantidadArticulos > 0">{{ cantidadArticulos }}</span>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

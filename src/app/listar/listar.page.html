@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="warning">
-    <ion-segment value="custom">
+    <!-- <ion-segment value="custom">
       <ion-segment-button style="text-align: center; color: black; font-weight: bold" value="custom">
         Disponibles
       </ion-segment-button>
@@ -11,7 +11,8 @@
           <span class="cantidad-carrito" *ngIf="cantidadCarrito > 0">{{ cantidadCarrito }}</span>
         </div>
       </ion-segment-button>
-    </ion-segment>
+    </ion-segment> -->
+    <h1 style = "text-align:center; justify-content:center">Delicias Del Sur</h1>
   </ion-toolbar>
 </ion-header>
 <!-- <ion-note style = "font-size: smaller; text-align: center;display: block;">desliza para actualizar</ion-note> -->
@@ -39,7 +40,7 @@
                   <h2 style="text-align: center;">{{detalle.desc}}</h2>
                   <br> -->
                     <div class="centrado" style="margin-top: 5%;">
-                        <ion-button color="warning" style="align-items: center;" id="b" [routerLink]="['/detalle-pagina', detalle.id]" #cart>
+                        <ion-button color="warning" style="align-items: center;" id="b" [routerLink]="['/tabs/detalle-pagina', detalle.id]" #cart>
                           Ordenar&nbsp;<ion-icon name="pizza-sharp"></ion-icon>
                         </ion-button>
                     </div>

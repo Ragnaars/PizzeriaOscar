@@ -69,6 +69,7 @@ export class DetallePaginaPage implements OnInit {
   ionViewWillLeave() {
     this.resetearCheckboxes();
     this.mostrarBotones = false;
+    this.cantidad = 1;
   }
 
   resetearCheckboxes() {

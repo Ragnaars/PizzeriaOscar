@@ -23,7 +23,7 @@ export class LoadingPage implements OnInit {
     if (navigator.onLine) {
       setTimeout(() => {
         console.log("Hay conexión a Internet")
-        this.router.navigate(['/listar']);
+        this.router.navigate(['/tabs/listar']);
       }, 3000); // Retraso de 3 segundos (3000 milisegundos)
       // La conexión a Internet está disponible
       // Realizar cualquier otra verificación necesaria
