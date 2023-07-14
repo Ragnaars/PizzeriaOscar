@@ -78,9 +78,9 @@ export class CarritoPage implements OnInit {
           url += " %2B " + ing.nombre;
         });
       }
-      url += " || Mi metodo de pago es : " + this.metodoPago;
-
+      url += " || ";
     });
+    url += " Mi metodo de pago es : " + this.metodoPago;
     window.location.href = url;
 
   }
