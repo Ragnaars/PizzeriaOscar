@@ -38,6 +38,7 @@ export class DetallePaginaPage implements OnInit {
   carrito: Array<any> = [];
   ingredientesSeleccionados: any = [];
   mostrarBotones: boolean = false;
+  especial: boolean = false;
 
   constructor(
     private rutaActiva: ActivatedRoute,
@@ -65,6 +66,7 @@ export class DetallePaginaPage implements OnInit {
   }
   ionViewWillLeave() {
     this.resetearCheckboxes();
+    this.mostrarBotones = false;
   }
 
   resetearCheckboxes() {
@@ -74,14 +76,20 @@ export class DetallePaginaPage implements OnInit {
   }
 
   async addCarrito(parametroId: number, cantidad: number) {
+    if (this.ingredientesSeleccionados.length > 0) {
+      this.especial = true;
+      this.precio = this.precio + (this.ingredientesSeleccionados.length * 1000);
+    }
+
     this.producto = {
       "id": this.parametroId,
       "desc": this.desc,
       "nombre": this.nombre,
-      "precio": this.total,
+      "precio": this.precio,
       "foto": this.foto,
       "cantidad": this.cantidad,
-      "ingredientes": this.ingredientesSeleccionados
+      "ingredientes": this.ingredientesSeleccionados,
+      "especial": this.especial
     }
 
 
@@ -142,6 +150,7 @@ export class DetallePaginaPage implements OnInit {
       this.total -= ingrediente.precio;
     }
     console.log(this.ingredientesSeleccionados);
+    this.mostrarBotones = this.ingredientesSeleccionados.length > 0;
   }
 
 }

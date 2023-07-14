@@ -19,6 +19,7 @@ export class CarritoPage implements OnInit {
   parametroId: any = {};
   countrycode: string = "56";
   whatsappnumber: string = "978840732";
+  especial!: boolean;
 
 
 
@@ -77,6 +78,7 @@ export class CarritoPage implements OnInit {
         });
       }
       url += " || ";
+
     });
     window.location.href = url;
 

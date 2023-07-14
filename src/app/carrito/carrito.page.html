@@ -22,7 +22,13 @@
       <ion-thumbnail  slot = "start">
         <img style = "border-radius: 20px;" [src]="prod.foto" alt="fotodetalle">
       </ion-thumbnail>
-      {{prod.cantidad}} x {{prod.nombre}} - {{prod.precio | currency: 'CLP':'symbol-narrow'}} = {{prod.cantidad * prod.precio | currency: 'CLP':'symbol-narrow'}}
+      <p *ngIf = "prod.especial === true">
+        {{prod.cantidad}} x {{prod.nombre}} - {{prod.precio | currency: 'CLP':'symbol-narrow'}} = {{prod.cantidad * prod.precio | currency: 'CLP':'symbol-narrow'}} -- ESPECIAL
+      </p>
+      <p *ngIf = "prod.especial === false">
+        {{prod.cantidad}} x {{prod.nombre}} - {{prod.precio | currency: 'CLP':'symbol-narrow'}} = {{prod.cantidad * prod.precio | currency: 'CLP':'symbol-narrow'}} 
+      </p>
+      
       <ion-grid>
         <ion-row>
           <ion-col>
