@@ -2,23 +2,27 @@
     display: flex;
     justify-content: center;
   }
+  .centered-button {
+    margin: auto;
+  }
+
   ion-modal {
     --height: 50%;
     --margin: 20px;
     --border-radius: 16px;
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   }
-  
+
   ion-modal::part(backdrop) {
     background: rgba(209, 213, 219);
     opacity: 1;
   }
-  
+
   ion-modal ion-toolbar {
     --background:black;
     --color: white;
   }
-  
+
   .glow-on-hover {
     width: 220px;
     height: 50px;
@@ -31,7 +35,7 @@
     z-index: 0;
     border-radius: 10px;
   }
-  
+
   .glow-on-hover:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
@@ -48,19 +52,19 @@
     transition: opacity .3s ease-in-out;
     border-radius: 10px;
   }
-  
+
   .glow-on-hover:active {
     color: #000
   }
-  
+
   .glow-on-hover:active:after {
     background: transparent;
   }
-  
+
   .glow-on-hover:hover:before {
     opacity: 1;
   }
-  
+
   .glow-on-hover:after {
     z-index: -1;
     content: '';
@@ -72,10 +76,21 @@
     top: 0;
     border-radius: 10px;
   }
-  
+
   @keyframes glowing {
     0% { background-position: 0 0; }
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
   }
-  
+  .centrado{
+    text-align: center;
+  }
+  ion-content.ion-justify-content-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  ion-content.ion-align-items-center {
+    display: flex;
+    align-items: center;
+  }
