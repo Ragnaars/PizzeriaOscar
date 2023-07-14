@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button default-href="#" [routerLink]="['/listar']"></ion-back-button>
     </ion-buttons>
-    <ion-title slot="primary">¡Reservala!</ion-title>
+    <ion-title slot="primary">¡Ordenala ya!</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content className="animate__animated animated__slideInUp animate__faster">
@@ -22,17 +22,31 @@
         Precio: {{data.precio | currency: 'CLP':'symbol-narrow'}}
       </h1>
 
+      <h1 style="text-align: center; color: black; font-size: 15px; font-weight: bold; margin-top: 5%;">
+        {{data.descripcion}}
+      </h1>
+
+
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-top: 5%;">
+        <div *ngFor="let ingrediente of ingredientes" style="display: flex; align-items: center; margin: 5px;">
+          <ion-checkbox [(ngModel)]="ingrediente.seleccionado" (ionChange)="obtenerValorCheckbox(ingrediente)"></ion-checkbox>
+          <span style="margin-left: 5px;">{{ ingrediente.nombre }}</span>
+        </div>
+      </div>
+      
+      
+
       <div style="display: flex; justify-content: space-between; margin-top: 5%;">
-        <ion-button color="danger" *ngIf="data.stock != 0" (click)="restReserva()" slot="start">
+        <ion-button *ngIf="ingredientesSeleccionados.length === 0" color="danger" (click)="restReserva()" slot="start">
           <ion-icon name="remove-circle-outline"></ion-icon>
         </ion-button>
 
-        <ion-button class="centrado" color="success" *ngIf="data.stock != 0" [routerLink]="['/listar']"
+        <ion-button class="centrado" color="success" [routerLink]="['/listar']"
           (click)="addCarrito(data.id, cantidad)" slot="primary">
           Agregar
         </ion-button>
 
-        <ion-button *ngIf="data.stock != 0" (click)="addReserva()" slot="end">
+        <ion-button *ngIf="ingredientesSeleccionados.length === 0" (click)="addReserva()" slot="end">
           <ion-icon name="add-circle-outline"></ion-icon>
         </ion-button>
       </div>
@@ -41,7 +55,7 @@
         Cantidad: {{cantidad}}
       </h1>
 
-      <h1 *ngIf="data.stock != 0"
+      <h1
         style="text-align: center; color: black; font-size: 22px; font-weight: bold; margin-top: 5%;">
         Total: {{total | currency: 'CLP':'symbol-narrow'}}
       </h1>

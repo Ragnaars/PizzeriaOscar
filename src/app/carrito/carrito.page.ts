@@ -70,8 +70,13 @@ export class CarritoPage implements OnInit {
     this.carrito.forEach((prod: any) => {
       this.nombreProducto = prod.nombre;
       this.cantidadProducto = prod.cantidad;
-      url += this.cantidadProducto + " x " + this.nombreProducto + "\n || ";
-
+      url += this.cantidadProducto + " x " + this.nombreProducto;
+      if (prod.ingredientes) {
+        prod.ingredientes.forEach((ing: any) => {
+          url += " más " + ing.nombre;
+        });
+      }
+      url += " || ";
     });
     window.location.href = url;
 

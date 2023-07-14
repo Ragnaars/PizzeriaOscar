@@ -16,16 +16,28 @@ import { registerPlugin } from "@capacitor/core";
   styleUrls: ['./detalle-pagina.page.scss'],
 })
 export class DetallePaginaPage implements OnInit {
+
+  ingredientes: { nombre: string, precio: number, seleccionado: boolean }[] = [
+    { nombre: 'Jamon', precio: 1000, seleccionado: false },
+    { nombre: 'Extra queso', precio: 1000, seleccionado: false },
+    { nombre: 'Champiñones', precio: 1000, seleccionado: false },
+    { nombre: 'Salame', precio: 1000, seleccionado: false },
+    { nombre: 'Piña', precio: 1000, seleccionado: false },
+    { nombre: 'Pimenton', precio: 1000, seleccionado: false }
+  ];
+
   parametroId!: Producto;
   data: any = [];
   total!: number;
   producto: any = {};
   nombre!: string;
   desc!: string;
-  precio!: number
+  precio!: number;
   foto!: string;
-  cantidad: number = 0;
+  cantidad: number = 1;
   carrito: Array<any> = [];
+  ingredientesSeleccionados: any = [];
+  mostrarBotones: boolean = false;
 
   constructor(
     private rutaActiva: ActivatedRoute,
@@ -48,25 +60,28 @@ export class DetallePaginaPage implements OnInit {
         this.foto = this.data.imagen;
         this.nombre = this.data.nombre;
         this.precio = this.data.precio;
+        this.total = this.precio;
       });
   }
+  ionViewWillLeave() {
+    this.resetearCheckboxes();
+  }
 
-  // getProducto(){
-  //   this.servicio.getProducto(Number(this.parametroId)).
-  //   subscribe(producto =>{
-  //     this.data = producto;
-  //     console.log(this.data, "esta si es la lista")
-  //   })
-  // }
+  resetearCheckboxes() {
+    this.ingredientes.forEach(ingrediente => {
+      ingrediente.seleccionado = false;
+    });
+  }
 
   async addCarrito(parametroId: number, cantidad: number) {
     this.producto = {
       "id": this.parametroId,
       "desc": this.desc,
       "nombre": this.nombre,
-      "precio": this.precio,
+      "precio": this.total,
       "foto": this.foto,
       "cantidad": this.cantidad,
+      "ingredientes": this.ingredientesSeleccionados
     }
 
 
@@ -80,6 +95,7 @@ export class DetallePaginaPage implements OnInit {
     } else {
       this.servicioCarrito.agregaracarrito(this.producto);
       console.log("producto", this.producto);
+      this.ingredientesSeleccionados = [];
     }
   }
 
@@ -115,6 +131,17 @@ export class DetallePaginaPage implements OnInit {
       text: 'Echale un vistazo a esta oferta',
       url: this.foto,
     });
+  }
+
+  obtenerValorCheckbox(ingrediente: any) {
+    if (ingrediente.seleccionado) {
+      this.ingredientesSeleccionados.push(ingrediente);
+      this.total += ingrediente.precio;
+    } else {
+      this.ingredientesSeleccionados.splice(this.ingredientesSeleccionados.indexOf(ingrediente), 1);
+      this.total -= ingrediente.precio;
+    }
+    console.log(this.ingredientesSeleccionados);
   }
 
 }
