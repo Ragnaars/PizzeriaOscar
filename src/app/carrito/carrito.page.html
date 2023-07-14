@@ -67,6 +67,34 @@
           </ion-item>
         </ion-list>
         <h3 style="text-align: center;">Total: <span>{{getTotal() | currency: 'CLP':'symbol-narrow'}}</span></h3>
+        <h2 style = "text-align: center; font-size:20">Escoge metodo de pago</h2>
+        <div class="radio-buttons-container" *ngIf="getTotal() != 0">
+          <ion-radio-group value="metPago">
+            <div class="radio-buttons-container" *ngIf="getTotal() != 0">
+              <ion-radio-group [(ngModel)]="metodoPago" value="metPago">
+                <div class="radio-button">
+                  <ion-item>
+                    <ion-label>Débito</ion-label>
+                    <ion-radio value="Debito"></ion-radio>
+                  </ion-item>
+                </div>
+                <div class="radio-button">
+                  <ion-item>
+                    <ion-label>Transferencia</ion-label>
+                    <ion-radio value="Transferencia"></ion-radio>
+                  </ion-item>
+                </div>
+                <div class="radio-button">
+                  <ion-item>
+                    <ion-label>Efectivo</ion-label>
+                    <ion-radio value="Efectivo"></ion-radio>
+                  </ion-item>
+                </div>
+              </ion-radio-group>
+            </div>
+          </ion-radio-group>
+        </div>
+      <h3 style = "text-align:center" *ngIf="getTotal() != 0">Realizar orden</h3>
         <div class="centrado">
           <ion-button class="glow-on-hover" *ngIf="getTotal() != 0" color="success" (click)="checkout()">
             <ion-icon name="logo-whatsapp"></ion-icon>

@@ -94,3 +94,13 @@
     display: flex;
     align-items: center;
   }
+
+  .radio-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .radio-button {
+    margin: 0 10px;
+  }

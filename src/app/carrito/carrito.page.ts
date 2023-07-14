@@ -20,6 +20,7 @@ export class CarritoPage implements OnInit {
   countrycode: string = "56";
   whatsappnumber: string = "978840732";
   especial!: boolean;
+  metodoPago: string = '';
 
 
 
@@ -74,10 +75,10 @@ export class CarritoPage implements OnInit {
       url += this.cantidadProducto + " x " + this.nombreProducto;
       if (prod.ingredientes) {
         prod.ingredientes.forEach((ing: any) => {
-          url += " más " + ing.nombre;
+          url += " %2B " + ing.nombre;
         });
       }
-      url += " || ";
+      url += " || Mi metodo de pago es : " + this.metodoPago;
 
     });
     window.location.href = url;
