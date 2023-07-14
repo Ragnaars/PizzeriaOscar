@@ -31,7 +31,7 @@ export class CarritoPage implements OnInit {
     private rutaActiva: ActivatedRoute,
     public alertController: AlertController,
     private modalCtrl: ModalController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.carrito = this.servicioCarrito.getCarrito();
@@ -83,6 +83,7 @@ export class CarritoPage implements OnInit {
             mensaje += " + " + ing.nombre;
           });
         }
+        // mensaje += " || ";
         mensaje += "\n";
       });
 
