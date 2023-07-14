@@ -17,13 +17,14 @@ import { registerPlugin } from "@capacitor/core";
 })
 export class DetallePaginaPage implements OnInit {
 
-  ingredientes: { nombre: string, precio: number, seleccionado: boolean }[] = [
-    { nombre: 'Jamon', precio: 1000, seleccionado: false },
-    { nombre: 'Extra queso', precio: 1000, seleccionado: false },
-    { nombre: 'Champiñones', precio: 1000, seleccionado: false },
-    { nombre: 'Salame', precio: 1000, seleccionado: false },
-    { nombre: 'Piña', precio: 1000, seleccionado: false },
-    { nombre: 'Pimenton', precio: 1000, seleccionado: false }
+
+  ingredientes: { nombre: string, precio: number, seleccionado: boolean, icono: string }[] = [
+    { nombre: 'Jamon', precio: 1000, seleccionado: false, icono: 'assets/icon/jamon.png' },
+    { nombre: 'Extra queso', precio: 1000, seleccionado: false, icono: 'assets/icon/queso.png' },
+    { nombre: 'Champiñones', precio: 1000, seleccionado: false, icono: 'assets/icon/champinones.png' },
+    { nombre: 'Salame', precio: 1000, seleccionado: false, icono: 'assets/icon/salame.png' },
+    { nombre: 'Piña', precio: 1000, seleccionado: false, icono: 'assets/icon/pina.png' },
+    { nombre: 'Pimenton', precio: 1000, seleccionado: false, icono: 'assets/icon/pimenton.png' }
   ];
 
   parametroId!: Producto;

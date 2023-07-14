@@ -15,25 +15,18 @@ export class CarritoService {
   }
 
   agregaracarrito(producto: ProductoConId) {
-    const index = this.carrito.findIndex(item => item.id === producto.id);
-    if (index !== -1) {
-      this.carrito[index].cantidad += producto.cantidad;
-    } else {
+
       this.carrito.push(producto);
     }
-  }
 
   removerDelCarrito() {
     this.carrito = [];
   }
 
   eliminarDelCarrito(producto: ProductoConId) {
-    const index = this.carrito.findIndex(item => item.id === producto.id);
-    if (index !== -1) {
-      if (this.carrito[index].cantidad > 1) {
-        this.carrito[index].cantidad--;
-      } else {
-        this.carrito.splice(index, 1);
+    for (let [index, p] of this.carrito.entries()) {
+      if (p.id === producto.id) {
+        this.carrito.splice(index, 1)
       }
     }
   }
