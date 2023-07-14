@@ -15,12 +15,12 @@
 
   ion-modal::part(backdrop) {
     background: rgba(209, 213, 219);
-    opacity: 1;
+    opacity: 8;
   }
 
-  ion-modal ion-toolbar {
-    --background:black;
-    --color: white;
+  .custom-modal {
+    --backdrop-opacity: 0.8; /* Adjust the opacity as needed */
+    --backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
   }
 
   .glow-on-hover {
