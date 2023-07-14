@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ListarPage implements OnInit {
 
+
   @ViewChild(IonInfiniteScroll)
   public scroll: IonInfiniteScroll | undefined;
 

@@ -49,12 +49,12 @@
           <ion-button *ngIf="!mostrarBotones" color="danger" (click)="restReserva()" slot="start">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
-    
-          <ion-button class="centrado" color="success" [routerLink]="['/listar']"
+
+          <ion-button class="centrado" color="success" [routerLink]="['/carrito']"
             (click)="addCarrito(data.id, cantidad)" slot="primary">
             Agregar
           </ion-button>
-    
+
           <ion-button *ngIf="!mostrarBotones" (click)="addReserva()" slot="end">
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>

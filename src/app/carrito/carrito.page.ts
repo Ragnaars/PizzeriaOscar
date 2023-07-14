@@ -21,6 +21,9 @@ export class CarritoPage implements OnInit {
   whatsappnumber: string = "978840732";
   especial!: boolean;
   metodoPago: string = '';
+  nombre: string = '';
+  direccion: string = '';
+
 
 
 
@@ -67,22 +70,35 @@ export class CarritoPage implements OnInit {
   }
 
   async checkout() {
-    let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar : ";
-    this.router.navigate(['/loading-pay']);
-    this.carrito.forEach((prod: any) => {
-      this.nombreProducto = prod.nombre;
-      this.cantidadProducto = prod.cantidad;
-      url += this.cantidadProducto + " x " + this.nombreProducto;
-      if (prod.ingredientes) {
-        prod.ingredientes.forEach((ing: any) => {
-          url += " %2B " + ing.nombre;
-        });
-      }
-      url += " || ";
-    });
-    url += " Mi metodo de pago es : " + this.metodoPago;
-    window.location.href = url;
+    if (this.metodoPago && this.metodoPago.length > 0 && this.nombre && this.nombre.length >= 6 && this.direccion && this.direccion.length >= 6) {
+      let url: string = "https://api.whatsapp.com/send?phone=" + this.countrycode + this.whatsappnumber + "&text=Me gustaría ordenar : ";
+      this.router.navigate(['/loading-pay']);
+      this.carrito.forEach((prod: any) => {
+        this.nombreProducto = prod.nombre;
+        this.cantidadProducto = prod.cantidad;
+        url += this.cantidadProducto + " x " + this.nombreProducto;
+        if (prod.ingredientes) {
+          prod.ingredientes.forEach((ing: any) => {
+            url += " %2B " + ing.nombre;
+          });
+        }
+        url += " || ";
+      });
+      url += " Mi metodo de pago es : " + this.metodoPago;
+      url += " Mi nombre es : " + this.nombre + " y mi dirección es : " + this.direccion;
 
+      window.location.href = url;
+    } else {
+      if (!this.metodoPago || this.metodoPago.length === 0) {
+        console.log("Debes seleccionar un método de pago");
+      } else {
+        console.log("Debes completar el nombre (mínimo 6 letras) y la dirección");
+      }
+    }
+  }
+
+  metodoPagoSeleccionado() {
+    return this.metodoPago === "Debito" || this.metodoPago === "Transferencia" || this.metodoPago === "Efectivo";
   }
 
   goToDisponibles() {

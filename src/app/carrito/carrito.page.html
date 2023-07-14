@@ -1,51 +1,53 @@
 <ion-header>
-  <ion-toolbar color = "warning">
-    <ion-segment value = "favorites">
-      <ion-segment-button value="all" (click) = "goToDisponibles()" >
-          Disponibles
+  <ion-toolbar color="warning">
+    <ion-segment value="favorites">
+      <ion-segment-button value="all" (click)="goToDisponibles()">
+        Disponibles
       </ion-segment-button>
-      <ion-segment-button  value="favorites">
+      <ion-segment-button value="favorites">
         <ion-icon name="cart-outline"></ion-icon>
       </ion-segment-button>
     </ion-segment>
-
-    <!-- <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons> -->
-    <!-- <ion-title>carrito</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor= "let prod of carrito" lines = "insert">
-      <ion-thumbnail  slot = "start">
-        <img style = "border-radius: 20px;" [src]="prod.foto" alt="fotodetalle">
+    <ion-item *ngFor="let prod of carrito" lines="insert">
+      <ion-thumbnail slot="start">
+        <img style="border-radius: 20px;" [src]="prod.foto" alt="fotodetalle">
       </ion-thumbnail>
-      <p *ngIf = "prod.especial === true">
-        {{prod.cantidad}} x {{prod.nombre}} - {{prod.precio | currency: 'CLP':'symbol-narrow'}} = {{prod.cantidad * prod.precio | currency: 'CLP':'symbol-narrow'}} -- ESPECIAL
+      <p *ngIf="prod.especial === true">
+        {{prod.cantidad}} x {{prod.nombre}} - {{prod.precio | currency: 'CLP':'symbol-narrow'}} =
+        {{prod.cantidad * prod.precio | currency: 'CLP':'symbol-narrow'}} -- ESPECIAL
       </p>
-      <p *ngIf = "prod.especial === false">
-        {{prod.cantidad}} x {{prod.nombre}} - {{prod.precio | currency: 'CLP':'symbol-narrow'}} = {{prod.cantidad * prod.precio | currency: 'CLP':'symbol-narrow'}} 
+      <p *ngIf="prod.especial === false">
+        {{prod.cantidad}} x {{prod.nombre}} - {{prod.precio | currency: 'CLP':'symbol-narrow'}} =
+        {{prod.cantidad * prod.precio | currency: 'CLP':'symbol-narrow'}}
       </p>
-      
+
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-button color = "danger" (click) = "quitar(prod)">
+            <ion-button color="danger" (click)="quitar(prod)">
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
-    <p  *ngIf="getTotal() == 0" style="text-align: center;"><span>Aún no eliges nada 😥</span></p>
-    <p  *ngIf="getTotal() != 0" style="text-align: center;">Total: <span>{{getTotal() | currency: 'CLP':'symbol-narrow'}}</span></p>
+    <p *ngIf="getTotal() == 0" style="text-align: center;"><span>Aún no eliges nada 😥</span></p>
+    <p *ngIf="getTotal() != 0" style="text-align: center;">Total: <span>{{getTotal() | currency:
+        'CLP':'symbol-narrow'}}</span></p>
   </ion-list>
-  <div class = "center">
+  <div class="center">
     <ion-row>
-      <ion-col id = "b"  size = "6"> <ion-button id = "open-modal" color = "success">Confirmar</ion-button></ion-col>
-      <ion-col id = "b" size = "6"> <ion-button id = "p" (click) = "remover()">Eliminar</ion-button></ion-col>
+      <ion-col id="b" size="6">
+        <ion-button id="open-modal" color="success">Confirmar</ion-button>
+      </ion-col>
+      <ion-col id="b" size="6">
+        <ion-button id="p" (click)="remover()">Eliminar</ion-button>
+      </ion-col>
     </ion-row>
   </div>
 
@@ -62,45 +64,60 @@
             </ion-avatar>
             <ion-label>
               <h2>{{prod.nombre}}</h2>
-              <p *ngIf = "prod.especial === true" >{{prod.precio | currency: 'CLP':'symbol-narrow'}} x {{prod.cantidad}} -- ESPECIAL</p>
-              <p *ngIf = "prod.especial === false">{{prod.precio | currency: 'CLP':'symbol-narrow'}} x {{prod.cantidad}}</p>
+              <p *ngIf="prod.especial === true">{{prod.precio | currency: 'CLP':'symbol-narrow'}} x {{prod.cantidad}} --
+                ESPECIAL</p>
+              <p *ngIf="prod.especial === false">{{prod.precio | currency: 'CLP':'symbol-narrow'}} x {{prod.cantidad}}
+              </p>
             </ion-label>
           </ion-item>
         </ion-list>
-        <h3 style="text-align: center;"  *ngIf="getTotal() != 0">Total: <span>{{getTotal() | currency: 'CLP':'symbol-narrow'}}</span></h3>
-        <h2  *ngIf="getTotal() != 0" style = "text-align: center; font-size:20">Escoge metodo de pago</h2>
+        <h3 style="text-align: center;" *ngIf="getTotal() != 0">Total: <span>{{getTotal() | currency:
+            'CLP':'symbol-narrow'}}</span></h3>
+        <h2 *ngIf="getTotal() != 0" style="text-align: center; font-size:20px">Escoge método de pago</h2>
         <div class="radio-buttons-container" *ngIf="getTotal() != 0">
-          <ion-radio-group value="metPago">
-            <div class="radio-buttons-container" *ngIf="getTotal() != 0">
-              <ion-radio-group [(ngModel)]="metodoPago" value="metPago">
-                <div class="radio-button">
-                  <ion-item>
-                    <ion-label>Débito</ion-label>
-                    <ion-radio value="Debito"></ion-radio>
-                  </ion-item>
-                </div>
-                <div class="radio-button">
-                  <ion-item>
-                    <ion-label>Transferencia</ion-label>
-                    <ion-radio value="Transferencia"></ion-radio>
-                  </ion-item>
-                </div>
-                <div class="radio-button">
-                  <ion-item>
-                    <ion-label>Efectivo</ion-label>
-                    <ion-radio value="Efectivo"></ion-radio>
-                  </ion-item>
-                </div>
-              </ion-radio-group>
+          <ion-radio-group [(ngModel)]="metodoPago" value="metPago" required>
+            <div class="radio-button">
+              <ion-item>
+                <ion-label>Débito</ion-label>
+                <ion-radio value="Debito"></ion-radio>
+              </ion-item>
+            </div>
+            <div class="radio-button">
+              <ion-item>
+                <ion-label>Transferencia</ion-label>
+                <ion-radio value="Transferencia"></ion-radio>
+              </ion-item>
+            </div>
+            <div class="radio-button">
+              <ion-item>
+                <ion-label>Efectivo</ion-label>
+                <ion-radio value="Efectivo"></ion-radio>
+              </ion-item>
             </div>
           </ion-radio-group>
         </div>
-      <h3 style = "text-align:center" *ngIf="getTotal() != 0">Realizar orden</h3>
+        <h2 *ngIf="getTotal() != 0" style="text-align: center; font-size:20px">Ingresa tus datos</h2>
+        <div style="margin-top: 20px;">
+          <ion-item>
+            <ion-label position="floating">Nombre: </ion-label>
+            <ion-input type="text" [(ngModel)]="nombre" required minlength="6"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Dirección: </ion-label>
+            <ion-input type="text" [(ngModel)]="direccion" required minlength="6"></ion-input>
+          </ion-item>
+          <div *ngIf="nombre && nombre.length < 6" style="color: red;">El nombre debe tener al menos 6 letras</div>
+          <div *ngIf="direccion && direccion.length < 6" style="color: red;">La dirección debe tener al menos 6 letras
+          </div>
+        </div>
+        <h3 style="text-align:center" *ngIf="getTotal() != 0">Realizar orden</h3>
         <div class="centrado">
-          <ion-button class="glow-on-hover" *ngIf="getTotal() != 0" color="success" (click)="checkout()">
+          <ion-button class="glow-on-hover" *ngIf="getTotal() != 0" color="success" [disabled]="!metodoPago || metodoPago.length === 0" (click)="checkout()">
             <ion-icon name="logo-whatsapp"></ion-icon>
           </ion-button>
         </div>
+        <p style="text-align:center; color:red" *ngIf="getTotal() != 0 && (!nombre || direccion.length === 0)">Debes colocar un nombre y dirección</p>
+        <p style="text-align:center; color:red" *ngIf="getTotal() != 0 && (!metodoPago || metodoPago.length === 0)">Debes seleccionar un método de pago</p>
         <ion-note>
           <p style="text-align:center;">Presiona fuera de la ventana modal para salir</p>
         </ion-note>

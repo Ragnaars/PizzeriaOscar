@@ -39,6 +39,7 @@ export class DetallePaginaPage implements OnInit {
   ingredientesSeleccionados: any = [];
   mostrarBotones: boolean = false;
   especial: boolean = false;
+  cantidadCarrito: number = 0;
 
   constructor(
     private rutaActiva: ActivatedRoute,
@@ -73,6 +74,13 @@ export class DetallePaginaPage implements OnInit {
     this.ingredientes.forEach(ingrediente => {
       ingrediente.seleccionado = false;
     });
+  }
+
+  agregarAlCarrito() {
+    // Lógica para agregar el producto al carrito
+
+    // Actualizar la cantidad en el carrito
+    this.cantidadCarrito += 1;
   }
 
   async addCarrito(parametroId: number, cantidad: number) {
