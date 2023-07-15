@@ -31,7 +31,7 @@
                   <h1 style="text-align: center; color: black; font-size: 28px; font-weight: bold">{{detalle.nombre}}</h1>
                 </ion-card-header>
                 <ion-card-content class="color-card-content">
-                  <img style="margin-top: 5%; border-radius: 5%;" id="foto" [src]="detalle.imagen" alt="detalle"
+                  <img style="margin-top: 5%; border-radius: 5%;" id="foto" [src]="detalle?.imagen?.[0]" alt="detalle"
                     class="imagen-size; center">
                   <h1 style="text-align: center; color: black; font-size: 22px; font-weight: bold; margin-top: 5%;">{{detalle.precio | currency: 'CLP':'symbol-narrow'}}</h1>
 
