@@ -1,9 +1,9 @@
 .color-card-content {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 .color-card-header {
-  background-color:  #5f5f5f;
+  background-color:  #2d2e2d;
 }
 
 .imagen-size {
@@ -32,6 +32,14 @@
   margin-left: 4px;
 }
 ion-toolbar {
-  --background: #19422d;
+  --background: #2d2e2d;
+  --color: white;
+}
+ion-content {
+  --background: #3d3d3d;
+  --color: white;
+}
+ion-button {
+  --background: #f79d4a;
   --color: white;
 }

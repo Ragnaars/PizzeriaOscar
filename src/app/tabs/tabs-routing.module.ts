@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: 'listar2',
         loadChildren: () => import('.././listar2/listar2.module').then(m => m.Listar2PageModule)
+      },
+      {
+        path: 'detalle-pagina2/:id',
+        loadChildren: () => import('.././detalle-pagina2/detalle-pagina2.module').then(m => m.DetallePagina2PageModule)
       }
     ]
   }

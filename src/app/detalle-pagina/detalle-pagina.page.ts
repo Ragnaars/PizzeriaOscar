@@ -66,6 +66,7 @@ export class DetallePaginaPage implements OnInit {
         this.total = this.precio;
       });
   }
+
   ionViewWillLeave() {
     this.resetearCheckboxes();
     this.mostrarBotones = false;

@@ -3,11 +3,52 @@
     <h1 style = "text-align:center; justify-content:center">Gustos del Sur</h1>
   </ion-toolbar>
 </ion-header>
+<!-- <ion-note style = "font-size: smaller; text-align: center;display: block;">desliza para actualizar</ion-note> -->
+<ion-content>
+   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+          <ion-refresher-content>
+          </ion-refresher-content>
+        </ion-refresher>
+        <ion-grid>
+          <ion-row>
+            <ion-col size=""></ion-col>
+            <ion-col size="12">        <ion-list *ngFor="let detalle of apiProducto.listaProducto$ | async">
+              <ion-card id="c">
+                <!-- <ion-card id = "c" [routerLink] = "['/detalle-pagina', detalle.id]" > -->
+                <ion-card-header class="color-card-header">
+                  <h1 style="text-align: center; color: black; font-size: 28px; font-weight: bold">{{detalle.nombre}}</h1>
+                </ion-card-header>
+                <ion-card-content class="color-card-content">
+                  <img style="margin-top: 5%; border-radius: 5%;" id="foto" [src]="detalle.imagen" alt="detalle"
+                    class="imagen-size; center">
+                  <h1 style="text-align: center; color: black; font-size: 22px; font-weight: bold; margin-top: 5%;">{{detalle.precio | currency: 'CLP':'symbol-narrow'}}</h1>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">listar2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+                  <!-- <br>
+                  <h2 style="text-align: center;">{{detalle.desc}}</h2>
+                  <br> -->
+                    <div class="centrado" style="margin-top: 5%;">
+                        <ion-button color="warning" style="align-items: center;" id="b" [routerLink]="['/tabs/detalle-pagina2', detalle.id]" #cart>
+                          Ordenar&nbsp;<ion-icon name="pizza-sharp"></ion-icon>
+                        </ion-button>
+                    </div>
+                </ion-card-content>
+              </ion-card>
+          </ion-list></ion-col>
+            <ion-col size=""></ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button>
+            <ion-icon name="arrow-up-circle"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="top">
+            <ion-fab-button [routerLink]="['/']"><ion-icon color="primary" name="list"></ion-icon></ion-fab-button>
+            <ion-fab-button [routerLink]="['/perfil']"><ion-icon color="primary"
+                name="person"></ion-icon></ion-fab-button>
+          </ion-fab-list>
+        </ion-fab> -->
+        <ion-infinite-scroll (ionInfinite)="cargarMasElementos()">
+          <ion-infinite-scroll-content loadingText="Cargando ..."></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
 </ion-content>

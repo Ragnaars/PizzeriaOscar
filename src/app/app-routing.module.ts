@@ -14,16 +14,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },
-  {
-    path: 'listar2',
-    loadChildren: () => import('./listar2/listar2.module').then( m => m.Listar2PageModule)
-  },
-
-
-
-
-
+  }
 
 ];
 

@@ -12,7 +12,7 @@
         </div>
       </ion-segment-button>
     </ion-segment> -->
-    <h1 style = "text-align:center; justify-content:center">Gustos del Sur</h1>
+    <h1 style = "text-align:center; justify-content:center; font-family: 'BerkshireSwash Regular';">Gusto del Sur</h1>
   </ion-toolbar>
 </ion-header>
 <!-- <ion-note style = "font-size: smaller; text-align: center;display: block;">desliza para actualizar</ion-note> -->
@@ -22,34 +22,23 @@
           <ion-refresher-content>
           </ion-refresher-content>
         </ion-refresher>
-        <ion-grid>
-          <ion-row>
-            <ion-col size=""></ion-col>
-            <ion-col size="12">        <ion-list *ngFor="let detalle of apiProducto.listaProducto$ | async">
+       <ion-list *ngFor="let detalle of apiProducto.listaProducto$ | async" style="background-color: #3d3d3d">
               <ion-card id="c">
                 <!-- <ion-card id = "c" [routerLink] = "['/detalle-pagina', detalle.id]" > -->
                 <ion-card-header class="color-card-header">
-                  <h1 style="text-align: center; color: white; font-size: 28px; font-weight: bold">{{detalle.nombre}}</h1>
+                  <h1 style="text-align: center; color: white; font-size: 22px; font-family: 'Bohemia LT Std SC Regular'; ">{{detalle.nombre}} • {{detalle.precio | currency: 'CLP':'symbol-narrow'}}</h1>
                 </ion-card-header>
                 <ion-card-content class="color-card-content">
                   <img style="margin-top: 5%; border-radius: 5%;" id="foto" [src]="detalle.imagen" alt="detalle"
                     class="imagen-size; center">
-                  <h1 style="text-align: center; color: black; font-size: 22px; font-weight: bold; margin-top: 5%;">{{detalle.precio | currency: 'CLP':'symbol-narrow'}}</h1>
-
-                  <!-- <br>
-                  <h2 style="text-align: center;">{{detalle.desc}}</h2>
-                  <br> -->
-                    <div class="centrado" style="margin-top: 5%;">
-                        <ion-button color="primary" style="align-items: center;" id="b" [routerLink]="['/tabs/detalle-pagina', detalle.id]" #cart>
+                  <!-- <h1 style="text-align: center; color: black; font-size: 22px; font-weight: bold; margin-top: 5%;">{{detalle.precio | currency: 'CLP':'symbol-narrow'}}</h1>-->                    <div class="centrado" style="margin-top: 5%;">
+                        <ion-button style="font-family:'Carlito Bold'; align-items: center; background-color: #f79d4a;" id="b" [routerLink]="['/tabs/detalle-pagina', detalle.id]" #cart>
                           Ordenar
                         </ion-button>
                     </div>
                 </ion-card-content>
               </ion-card>
-          </ion-list></ion-col>
-            <ion-col size=""></ion-col>
-          </ion-row>
-        </ion-grid>
+          </ion-list>
 
         <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
           <ion-fab-button>

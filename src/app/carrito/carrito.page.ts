@@ -31,10 +31,11 @@ export class CarritoPage implements OnInit {
     private rutaActiva: ActivatedRoute,
     public alertController: AlertController,
     private modalCtrl: ModalController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.carrito = this.servicioCarrito.getCarrito();
+    console.log(this.carrito);
     this.cantidadArticulos = this.servicioCarrito.getCantidadCarrito(); // Obtener la cantidad de artículos del carrito
   }
 
@@ -83,6 +84,7 @@ export class CarritoPage implements OnInit {
             mensaje += " + " + ing.nombre;
           });
         }
+        // mensaje += " || ";
         mensaje += "\n";
       });
 
