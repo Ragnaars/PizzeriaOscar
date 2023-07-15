@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="warning">
+  <ion-toolbar >
     <!-- <ion-segment value="custom">
       <ion-segment-button style="text-align: center; color: black; font-weight: bold" value="custom">
         Disponibles
@@ -12,7 +12,7 @@
         </div>
       </ion-segment-button>
     </ion-segment> -->
-    <h1 style = "text-align:center; justify-content:center">Gustos Del Sur</h1>
+    <h1 style = "text-align:center; justify-content:center">Gustos del Sur</h1>
   </ion-toolbar>
 </ion-header>
 <!-- <ion-note style = "font-size: smaller; text-align: center;display: block;">desliza para actualizar</ion-note> -->
@@ -29,7 +29,7 @@
               <ion-card id="c">
                 <!-- <ion-card id = "c" [routerLink] = "['/detalle-pagina', detalle.id]" > -->
                 <ion-card-header class="color-card-header">
-                  <h1 style="text-align: center; color: black; font-size: 28px; font-weight: bold">{{detalle.nombre}}</h1>
+                  <h1 style="text-align: center; color: white; font-size: 28px; font-weight: bold">{{detalle.nombre}}</h1>
                 </ion-card-header>
                 <ion-card-content class="color-card-content">
                   <img style="margin-top: 5%; border-radius: 5%;" id="foto" [src]="detalle.imagen" alt="detalle"
@@ -40,8 +40,8 @@
                   <h2 style="text-align: center;">{{detalle.desc}}</h2>
                   <br> -->
                     <div class="centrado" style="margin-top: 5%;">
-                        <ion-button color="warning" style="align-items: center;" id="b" [routerLink]="['/tabs/detalle-pagina', detalle.id]" #cart>
-                          Ordenar&nbsp;<ion-icon name="pizza-sharp"></ion-icon>
+                        <ion-button color="primary" style="align-items: center;" id="b" [routerLink]="['/tabs/detalle-pagina', detalle.id]" #cart>
+                          Ordenar
                         </ion-button>
                     </div>
                 </ion-card-content>

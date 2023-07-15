@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CarritoPage } from "../../app/carrito/carrito.page";
+import { CarritoService } from '../services/carrito.service';
+
 
 @Component({
   selector: 'app-tabs',
@@ -7,13 +8,17 @@ import { CarritoPage } from "../../app/carrito/carrito.page";
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-  cantidadArticulos = CarritoPage.prototype.cantidadArticulos;
+  cantidadArticulos: number = 0; // Variable para almacenar la cantidad de artículos en el carrito
+  carrito: any = [];
 
-  constructor() { }
-
-
+  constructor(private servicioCarrito: CarritoService) {}
 
   ngOnInit() {
+    this.cantidadArticulos = this.servicioCarrito.getCantidadCarrito(); // Obtener la cantidad de artículos del carrito
   }
 
+  ionViewDidEnter() {
+    this.carrito = this.servicioCarrito.getCarrito();
+    this.cantidadArticulos = this.carrito.length; // Actualizar la cantidad de artículos basada en la longitud del carrito
+  }
 }
