@@ -66,7 +66,7 @@ export class DetallePagina2Page implements OnInit {
       "desc": this.desc,
       "nombre": this.nombre,
       "precio": this.precio,
-      "foto": this.foto,
+      "foto": this.foto[0],
       "cantidad": this.cantidad,
       "especial": this.especial,
     }

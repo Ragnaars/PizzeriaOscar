@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DetallePagina2PageRoutingModule } from './detalle-pagina2-routing.module';
 
 import { DetallePagina2Page } from './detalle-pagina2.page';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { DetallePagina2Page } from './detalle-pagina2.page';
     IonicModule,
     DetallePagina2PageRoutingModule
   ],
-  declarations: [DetallePagina2Page]
+  declarations: [DetallePagina2Page],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class DetallePagina2PageModule {}
+export class DetallePagina2PageModule { }
