@@ -35,6 +35,7 @@ export class CarritoPage implements OnInit {
 
   ngOnInit() {
     this.carrito = this.servicioCarrito.getCarrito();
+    console.log(this.carrito);
     this.cantidadArticulos = this.servicioCarrito.getCantidadCarrito(); // Obtener la cantidad de artículos del carrito
   }
 

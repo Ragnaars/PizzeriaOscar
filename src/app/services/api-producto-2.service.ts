@@ -1,21 +1,18 @@
 import { Injectable, OnInit } from '@angular/core';
-import { ProductoConId, Producto, ProductoParcial } from "../interfaces/producto";
+import { Producto2ConId, Producto2, Producto2Parcial } from "../interfaces/producto2";
 import { HttpClient } from "@angular/common/http";
 import { Observable, BehaviorSubject } from "rxjs";
 import { delay, map } from "rxjs/operators";
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class ApiProductoService {
-
-
+export class ApiProducto2Service {
 
   public stock: number = 0;
   private Page = 1;
-  private URL_PRODUCTOS = 'https://adaptable-endurable-quit.glitch.me/producto';
-  private comLista = new BehaviorSubject<Array<ProductoConId>>([]);
+  private URL_PRODUCTOS = 'https://adaptable-endurable-quit.glitch.me/producto2';
+  private comLista = new BehaviorSubject<Array<Producto2ConId>>([]);
   //CREAR OBSERVADOR
   public listaProducto$ = this.comLista.asObservable();
 
@@ -24,8 +21,9 @@ export class ApiProductoService {
     private http: HttpClient,
   ) { }
 
+
   public obtenerPrimerosProductos() {
-    this.http.get<ProductoConId[]>(`${this.URL_PRODUCTOS}?_page=1`).pipe(
+    this.http.get<Producto2ConId[]>(`${this.URL_PRODUCTOS}?_page=1`).pipe(
       delay(2000)
     )
       .subscribe(resp => {
@@ -47,7 +45,7 @@ export class ApiProductoService {
   }
 
   public obtenerPrimerosProductos1() {
-    this.http.get<Array<ProductoConId>>(`${this.URL_PRODUCTOS}}`)
+    this.http.get<Array<Producto2ConId>>(`${this.URL_PRODUCTOS}}`)
       .pipe(
         delay(2000)
       )
@@ -59,7 +57,7 @@ export class ApiProductoService {
 
 
   public obtenerMasElementos() {
-    this.http.get<Array<ProductoConId>>(`${this.URL_PRODUCTOS}?_page=${this.Page}`).pipe(
+    this.http.get<Array<Producto2ConId>>(`${this.URL_PRODUCTOS}?_page=${this.Page}`).pipe(
       delay(2000)
     ).subscribe(resp => {
       this.Page = this.Page + 1;
@@ -67,22 +65,22 @@ export class ApiProductoService {
     })
   }
 
-  public guardarProducto(producto: Producto): Observable<ProductoConId> {
+  public guardarProducto(producto: Producto2): Observable<Producto2ConId> {
     // return this.http.post<ProductoConId>(this.UrlApi, producto, {
     //   headers : {
     //     'Content-Type':'application/json; charset=utf-8'
     //   }
     // })
-    return this.http.post<ProductoConId>(this.URL_PRODUCTOS, producto, {
+    return this.http.post<Producto2ConId>(this.URL_PRODUCTOS, producto, {
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
       }
     })
   }
 
-  public getProducto(id: number): Observable<ProductoConId | null> {
+  public getProducto(id: number): Observable<Producto2ConId | null> {
     // const path = this.URL_PRODUCTOS + id;
-    return this.http.get<ProductoConId | null>(`${this.URL_PRODUCTOS}/${id}`)
+    return this.http.get<Producto2ConId | null>(`${this.URL_PRODUCTOS}/${id}`)
   }
 
   public eliminarPublicacion(id: number): Observable<any> {
@@ -92,9 +90,9 @@ export class ApiProductoService {
     return this.http.delete(`${this.URL_PRODUCTOS}/${id}`);
   }
 
-  public actualizarPublicacion(producto: Producto, id: number) {
+  public actualizarPublicacion(producto: Producto2, id: number) {
     const path = this.URL_PRODUCTOS + id;
-    return this.http.patch<Producto>(path, producto);
+    return this.http.patch<Producto2>(path, producto);
 
     // return this.http.patch(`${this.URL_PRODUCTOS}/${id}`,producto,{
     //   headers: {
@@ -110,8 +108,6 @@ export class ApiProductoService {
   //     }
   //   });
   // }
-
-
 
 
 }

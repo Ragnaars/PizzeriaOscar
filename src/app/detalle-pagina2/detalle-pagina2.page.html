@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"  [routerLink]="['/tabs/listar']"></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="primary">Gustos del Sur</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="animate__animated animated__slideInUp animate__faster">
+  <ion-card>
+    <ion-card-header class="color-card-header">
+      <ion-card-title style="text-align:center">
+        <h1 style="text-align: center; color: black; font-size: 28px; font-weight: bold">{{ data.nombre }}</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="color-card-content">
+      <img style="margin-top: 5%; border-radius: 5%;" [src]="data.imagen">
+      <h1 style="text-align: center; color: black; font-size: 28px; font-weight: bold; margin-top: 5%;">
+        Precio: {{ data.precio | currency: 'CLP':'symbol-narrow' }}
+      </h1>
+
+      <h1 style="text-align: center; color: black; font-size: 15px; font-weight: bold; margin-top: 5%;">
+        {{ data.descripcion }}
+      </h1>
+      <br>
+
+      <div style="display: flex; justify-content: center; margin-top: 5%;">
+        <div class="botones-container">
+          <ion-button *ngIf="!mostrarBotones" color="danger" (click)="restReserva()" slot="start">
+            <ion-icon name="remove-circle-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button class="centrado" color="success" [routerLink]="['/tabs/carrito']" (click)="addCarrito(data.id, cantidad)"
+            slot="primary">
+            Agregar
+          </ion-button>
+
+          <ion-button *ngIf="!mostrarBotones" (click)="addReserva()" slot="end">
+            <ion-icon name="add-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+
+      <h1 style="text-align: center; color: black; font-size: 22px; font-weight: bold; margin-top: 5%;">
+        Cantidad: {{ cantidad }}
+      </h1>
+
+      <h1 style="text-align: center; color: black; font-size: 22px; font-weight: bold; margin-top: 5%;">
+        Total: {{ total | currency: 'CLP':'symbol-narrow' }}
+      </h1>
+
+      <div class="centrado" style="margin-top: 5%;">
+        <ion-button color="tertiary" (click)="shareApp()">
+          <ion-icon name="share-social-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
